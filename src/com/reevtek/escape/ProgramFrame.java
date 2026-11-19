@@ -40,6 +40,7 @@ public class ProgramFrame extends JFrame implements ActionListener {
         frame.getContentPane().setBackground(Color.black);
         frame.setTitle("Account maker");
         frame.setIconImage(logo.getImage());
+        frame.setLayout(new FlowLayout());
 
         //Constructs labels
         label.setText("Please select an option");
@@ -54,7 +55,6 @@ public class ProgramFrame extends JFrame implements ActionListener {
         signOn.setForeground(Color.white);
         signOn.setBackground(Color.gray);
         signOn.setBorder(BorderFactory.createEtchedBorder());
-        signOn.setBorder(BorderFactory.createEtchedBorder());
         signOn.setText("Sign on");
         signOn.setFocusable(false);
         signOn.addActionListener(this);
@@ -65,7 +65,6 @@ public class ProgramFrame extends JFrame implements ActionListener {
         signOn.setForeground(Color.white);
         signOn.setBackground(Color.gray);
         signUp.setBorder(BorderFactory.createEtchedBorder());
-        signUp.setBorder(BorderFactory.createEtchedBorder());
         signUp.setText("Sign up");
         signUp.setFocusable(false);
         signUp.addActionListener(this);
@@ -74,6 +73,8 @@ public class ProgramFrame extends JFrame implements ActionListener {
         frame.add(signOn);
         frame.add(signUp);
         frame.add(label);
+
+        frame.pack();
         frame.setVisible(true);
     }
 
@@ -99,8 +100,8 @@ public class ProgramFrame extends JFrame implements ActionListener {
             System.out.printf(time + " Set username to \"%s\"", username);
 */
 
-            //SignedUp signedUp = new SignedUp();
-            //System.out.printf("GUI info: %s", signedUp);//TODO make sign on
+            SignedUp signedUp = new SignedUp();
+            System.out.printf("GUI info: %s", signedUp);//TODO make sign on
 
             frame.dispose();
         }

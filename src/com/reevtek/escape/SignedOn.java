@@ -26,11 +26,12 @@ public class SignedOn {
         frame.getContentPane().setBackground(Color.black);
         frame.setTitle("Sign on");
         frame.setIconImage(logo.getImage());
-        frame.setVisible(true);
 
         label.setText("WIP");
         label.setHorizontalAlignment(JLabel.CENTER);
         label.setVerticalAlignment(JLabel.TOP);
         label.setForeground(Color.white);
+
+        frame.setVisible(true);
     }
 }
