@@ -36,7 +36,7 @@ public class ProgramFrame extends JFrame implements ActionListener {
         //Constructs frame
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
-        frame.setSize(500, 500);
+        frame.setSize(1000, 600);
         frame.getContentPane().setBackground(Color.black);
         frame.setTitle("Account maker");
         frame.setIconImage(logo.getImage());
@@ -83,7 +83,7 @@ public class ProgramFrame extends JFrame implements ActionListener {
 
         if(e.getSource() == signOn) {
 
-            System.out.println(time + " Selected \"Sign on\"\n");
+            System.out.println(time + " : Selected \"Sign on\"\n");
 
             JOptionPane.showConfirmDialog(null, "Signing on isn't functional yet...", "ERROR", JOptionPane.CANCEL_OPTION);
 
@@ -93,7 +93,7 @@ public class ProgramFrame extends JFrame implements ActionListener {
         }
         if(e.getSource() == signUp){
 
-            System.out.println(time + " Selected \"Sign up\"\n");
+            System.out.println(time + " : Selected \"Sign up\"\n");
 
 /*//TODO delete this shit
             String username = JOptionPane.showInputDialog("Create a unique username:");
@@ -101,7 +101,7 @@ public class ProgramFrame extends JFrame implements ActionListener {
 */
 
             SignedUp signedUp = new SignedUp();
-            System.out.printf("GUI info: %s", signedUp);//TODO make sign on
+            System.out.printf("GUI info: %s", signedUp + "\n");//TODO make sign on
 
             frame.dispose();
         }

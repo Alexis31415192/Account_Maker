@@ -18,7 +18,7 @@ public class SignedOn {
 
     SignedOn(){
 
-        System.out.println(time + " Opened new window\n");
+        System.out.println(time + " : Opened new window\n");
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);

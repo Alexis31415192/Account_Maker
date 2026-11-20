@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.net.URL;
 import java.time.LocalTime;
 
-public class SignedUp implements ActionListener {
+public class SignedUp implements ActionListener, EscapeInterface {
 
     static LocalTime time = LocalTime.now();
 
@@ -19,36 +19,33 @@ public class SignedUp implements ActionListener {
     JTextField usernameField = new JTextField();
     JTextField passwordField = new JTextField();
 
-    JButton createUsername;
-    JButton createPassword;
+    JButton create;
 
-    SignedUp(){
+    SignedUp() {
 
-        System.out.println(time + " Opened new window\n");
+        System.out.println(time + " : Opened new window\n");
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
-        frame.setSize(500, 500);
+        frame.setSize(1000, 1000);
         frame.getContentPane().setBackground(Color.black);
         frame.setTitle("Sign up");
         frame.setIconImage(logo.getImage());
         frame.setLayout(new FlowLayout());
 
-        createUsername = new JButton("Submit username");
-        createPassword = new JButton("Submit password");
+        create = new JButton("Submit");
 
         usernameField.setPreferredSize(new Dimension(250, 40));
+        usernameField.setText("CreateName");
         passwordField.setPreferredSize(new Dimension(250, 40));
+        passwordField.setText("CreatePassword");
 
-        createUsername.setEnabled(true);
-        createUsername.addActionListener(this);
-        createPassword.setEnabled(true);
-        createPassword.addActionListener(this);
+        create.setEnabled(true);
+        create.addActionListener(this);
 
         frame.add(usernameField);
-        frame.add(createUsername);
         frame.add(passwordField);
-        frame.add(createPassword);
+        frame.add(create);
 
         frame.pack();
         frame.setVisible(true);
@@ -57,15 +54,69 @@ public class SignedUp implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if(e.getSource() == createUsername){
+        if (e.getSource() == create && usernameField.getText() != null && usernameField.getText().length() > 4 || usernameField.getText().length() < 12 && passwordField.getText().length() > 8) {
 
-            usernameField.getText();
+            String username = usernameField.getText();
+            String password = passwordField.getText();
+
+            System.out.println(time + " : Set username: " + username + "\n");
+            System.out.println(time + " : Set password: " + password + "\n");
+        }
+        else if (e.getSource() == create) {
+
+            System.out.println("INVALID");
         }
 
-        if(e.getSource() == createPassword){
+    }
 
-            passwordField.getText();
-        }
+    @Override
+    public void ShowBalance(double balance) {
+
+    }
+
+    @Override
+    public double deposit() {
+        return 0;
+    }
+
+    @Override
+    public double Withdraw() {
+        return 0;
+    }
+
+    @Override
+    public double Interest(double balance) {
+        return 0;
+    }
+
+    @Override
+    public void printDie(int roll) {
+
+    }
+
+    @Override
+    public String[] Spinrow() {
+        return new String[0];
+    }
+
+    @Override
+    public void printRow(String[] row) {
+
+    }
+
+    @Override
+    public int getPayout(String[] row, double bet) {
+        return 0;
+    }
+
+    @Override
+    public void credits() {
+
+    }
+
+    @Override
+    public void cli() {
+
     }
 }
 

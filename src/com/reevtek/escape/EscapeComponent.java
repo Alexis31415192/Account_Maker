@@ -62,7 +62,7 @@ public class EscapeComponent {//IDK why I named It like that...
 
             System.out.println(frame + "\n");
             System.out.println("Converted Terminal to ProgramLog.\n");
-            System.out.println(time + " Opened new GUI window\n");
+            System.out.println(time + " : Opened new GUI window\n");
         }
     }
 
@@ -103,7 +103,7 @@ public class EscapeComponent {//IDK why I named It like that...
         scanner.nextLine();
         String adminPassword = scanner.nextLine();
 
-        if ("JavaIsTheBestILOVEJAVA".equals(adminPassword)) {
+        if ("JavaIsTheBest_ILOVEJAVA".equals(adminPassword)) {
             System.out.print("Enter interest rate (in %): ");
             double rate = scanner.nextDouble() / 100;
 
