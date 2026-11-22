@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.net.URL;
 import java.time.LocalTime;
 
-public class SignedUp implements ActionListener, EscapeInterface {
+public class SignedUp extends EscapeClass implements ActionListener {
 
     static LocalTime time = LocalTime.now();
 
@@ -66,56 +66,6 @@ public class SignedUp implements ActionListener, EscapeInterface {
 
             System.out.println("INVALID");
         }
-
-    }
-
-    @Override
-    public void ShowBalance(double balance) {
-
-    }
-
-    @Override
-    public double deposit() {
-        return 0;
-    }
-
-    @Override
-    public double Withdraw() {
-        return 0;
-    }
-
-    @Override
-    public double Interest(double balance) {
-        return 0;
-    }
-
-    @Override
-    public void printDie(int roll) {
-
-    }
-
-    @Override
-    public String[] Spinrow() {
-        return new String[0];
-    }
-
-    @Override
-    public void printRow(String[] row) {
-
-    }
-
-    @Override
-    public int getPayout(String[] row, double bet) {
-        return 0;
-    }
-
-    @Override
-    public void credits() {
-
-    }
-
-    @Override
-    public void cli() {
 
     }
 }

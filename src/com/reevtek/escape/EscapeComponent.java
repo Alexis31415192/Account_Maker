@@ -365,7 +365,13 @@ public class EscapeComponent {//IDK why I named It like that...
                 if (verify.equals(user.password)) {
 
 
+                    user.sayHello = "Greetings, comrade " + user.username;
+
+                    user.greet();
+
                     boolean programRunning = true;
+
+                    String greetings = "";
 
                     while (programRunning) {
 
@@ -375,6 +381,11 @@ public class EscapeComponent {//IDK why I named It like that...
                         double balance = user.balance;
 
                         System.out.println("*******************************************************");
+                        try {
+                            Thread.sleep(500);
+                        } catch (InterruptedException e) {
+                            System.out.println("Thread as been interrupted by unknown stupidity");
+                        }
                         System.out.println("1. Enter Virtual Bank*********************************");
                         System.out.println("2. Enter DICE ROLLER**********************************");
                         System.out.println("3. Enter MATRIX GENERATOR*****************************");
@@ -548,43 +559,74 @@ public class EscapeComponent {//IDK why I named It like that...
 
                             case 5 -> {
 
+                                System.out.print("E-mail -> ");
+                                user.EmailAddress();
+
                                 String[] account = {username, password};
 
-                                boolean isFound = false;
-
+                                System.out.println("\nEnter an option: ");
+                                System.out.println("    Edit E-mail domain...");
+                                System.out.println("    Edit greeting...");
+                                System.out.println("    Edit info...");
+                                int editInfo = scanner.nextInt();
                                 scanner.nextLine();
-                                System.out.print("Enter property to search (add String at the end of age and passkey and add a space at the beginning and end of the input): ");
-                                String target = scanner.nextLine();
 
-                                for (int i = 0; i < account.length; i++) {
+                                switch (editInfo) {
 
-                                    if (account[i].equals(target)) {
-                                        System.out.print("Property found at index: " + i + "\n");
-                                        System.out.print("Edit? (true/false): ");
-                                        boolean edit = scanner.nextBoolean();
+                                    case 1 -> {
+
+                                        System.out.println("Enter domain (must start with \"@\"): ");
+                                        user.domain = scanner.nextLine();
+                                    }
+
+                                    case 2 -> {
+
+                                        System.out.println("Enter a cool greeting");
+                                        user.sayHello = scanner.nextLine();
+
+                                        user.greet();
+                                    }
+
+                                    case 3 -> {
+                                        boolean isFound = false;
+
                                         scanner.nextLine();
+                                        System.out.print("\nEnter property to search (add String at the end of age and passkey and add a space at the beginning and end of the input): ");
+                                        String target = scanner.nextLine();
 
-                                        if (edit) {
+                                        for (int i = 0; i < account.length; i++) {
 
-                                            if (account[0].equals(target)) {
+                                            if (account[i].equals(target)) {
+                                                System.out.print("Property found at index: " + i + "\n");
+                                                System.out.print("Edit? (true/false): ");
+                                                boolean edit = scanner.nextBoolean();
+                                                scanner.nextLine();
 
-                                                System.out.print("EDIT: ");
-                                                username = scanner.nextLine();
-                                            }
-                                            if (account[1].equals(target)) {
+                                                if (edit) {
 
-                                                System.out.print("EDIT: ");
-                                                password = scanner.nextLine();
+                                                    if (account[0].equals(target)) {
+
+                                                        System.out.print("EDIT: ");
+                                                        username = scanner.nextLine();
+
+                                                        user.email = username + user.domain;
+                                                    }
+                                                    if (account[1].equals(target)) {
+
+                                                        System.out.print("EDIT: ");
+                                                        password = scanner.nextLine();
+                                                    }
+                                                }
+
+                                                isFound = true;
+                                                break;
                                             }
                                         }
+                                        if (!isFound) {
 
-                                        isFound = true;
-                                        break;
+                                            System.out.println("Couldn't find property :(");
+                                        }
                                     }
-                                }
-                                if (!isFound) {
-
-                                    System.out.println("Couldn't find property :(");
                                 }
                             }
 
@@ -606,6 +648,7 @@ public class EscapeComponent {//IDK why I named It like that...
                                         System.out.print("EDIT: ");
 
                                         passwordList = new ArrayList<>(Arrays.asList(scanner.nextLine().split(",")));//TODO fix this bug
+                                        System.out.println(passwordList);
                                     }
                                 } else {
 
@@ -623,8 +666,9 @@ public class EscapeComponent {//IDK why I named It like that...
 
                                 if (verify.equals(password)) {
 
+                                    User saveUser = new User(username, password, age, balance, passwordList, greetings);
 
-                                    System.out.print("Enter a custom directory to save your account");
+                                    System.out.print("Enter a custom directory to save your account: ");
                                     String newDir = scanner.nextLine();
 
                                     try {
@@ -724,6 +768,11 @@ public class EscapeComponent {//IDK why I named It like that...
                     while (true) {
 
                         System.out.println("*********************************************");
+                        try {
+                            Thread.sleep(500);
+                        } catch (InterruptedException e) {
+                            System.out.println("Thread as been interrupted by unknown stupidity");
+                        }
                         System.out.println("1. Enter Virtual Bank***********************");
                         System.out.println("2. Enter DICE ROLLER************************");
                         System.out.println("3. Enter MATRIX GENERATOR*******************");
@@ -902,10 +951,7 @@ public class EscapeComponent {//IDK why I named It like that...
 
                             case 6 -> {
 
-                                scanner.nextLine();
-
-
-                                User user = new User(username, password, age, balance, passwordList);
+                                User user = new User(username, password, age, balance, passwordList, username);
 
                                 System.out.print("Enter your password: ");
                                 String verify = scanner.nextLine();
@@ -914,17 +960,27 @@ public class EscapeComponent {//IDK why I named It like that...
 
                                     try {
 
-                                        FileOutputStream fileOut = new FileOutputStream("LocalUsers\\Session.ser");
+                                        String folderPath = System.getProperty("user.home");
+                                        System.out.println("I want to kill myself: " + folderPath);
+
+                                        File dir = new File(folderPath, "LocalUsers");
+                                        if (!dir.exists()) {
+                                            dir.mkdirs();
+                                        }
+
+                                        File file = new File(dir, "Session.ser");
+
+                                        FileOutputStream fileOut = new FileOutputStream(file);
                                         ObjectOutputStream out = new ObjectOutputStream(fileOut);
 
                                         out.writeObject(user);
                                         out.close();
                                         fileOut.close();
 
-                                        System.out.println("File successfully written (DO NOT OPEN FILE ON ANY APP BUT THIS ONE");
+                                        System.out.println("File successfully written at: " + file.getAbsolutePath());
                                     } catch (IOException e) {
 
-                                        System.out.println("Unable to reach file!");
+                                        System.out.println("Unable to create file!");
                                     }
 
                                 } else {
