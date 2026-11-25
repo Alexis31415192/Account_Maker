@@ -29,14 +29,41 @@ public class EscapeComponent {//IDK why I named It like that...
                 Thread.sleep(400);
             }
 
-            System.out.print("\rLoading complete!   \n");
+            System.out.print("\rLoading...                  \n");
 
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             System.out.println("\nLoading interrupted.");
         }
 
-        System.out.println("WELCOME COMRADE!\n");
+        int totalBars = 10;
+
+        String GREEN = "\u001B[32m";
+        String RESET = "\u001B[0m";
+
+        for (int i = 0; i <= totalBars; i++) {
+            StringBuilder bar = new StringBuilder("[");
+
+            for (int j = 0; j < totalBars; j++) {
+                if (j < i) {
+                    // Wrap the equals sign in green, then reset immediately after
+                    bar.append(GREEN + "=" + RESET);
+                } else {
+                    bar.append("-");
+                }
+            }
+            bar.append("]");
+
+            System.out.print("\r    " + bar.toString() + " " + (i * 10) + "%");
+
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+
+        System.out.println("\nWELCOME COMRADE!\n");
 
         System.out.println("""
                  -------------------------------------------------
@@ -257,11 +284,11 @@ public class EscapeComponent {//IDK why I named It like that...
         while (credits) {
 
             System.out.println("""
-                    ---------------------------------------------------------
+                     --------------------------------------------------------
                     |********************************************************|
                     |                CREDITS AND CONTRIBUTION                |
                     |********************************************************|
-                    ---------------------------------------------------------
+                     --------------------------------------------------------
                           This was created by The Socialist Dragon
                     THIS PROGRAM WAS CREATED TO APPLY ALL MY JAVA KNOWLEDGE
                     
