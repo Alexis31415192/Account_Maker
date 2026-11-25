@@ -15,26 +15,19 @@ public class EscapeComponent {//IDK why I named It like that...
 
     static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
-        try {
+        for (int i = 0; i < 5; i++) {//Cool loading screen
+            int numDots = i % 4;
 
-            for (int i = 0; i < 5; i++) {//Cool loading screen
-                int numDots = i % 4;
+            String sb = "\rLoading \"Account maker 0.1.0\"" + ".".repeat(numDots) +
+                    " ".repeat(3 - numDots);
 
-                String sb = "\rLoading \"Account maker 0.1.0\"" + ".".repeat(numDots) +
-                        " ".repeat(3 - numDots);
-
-                System.out.print(sb);
-                Thread.sleep(400);
-            }
-
-            System.out.print("\rLoading...                  \n");
-
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            System.out.println("\nLoading interrupted.");
+            System.out.print(sb);
+            Thread.sleep(400);
         }
+
+        System.out.print("\rLoading...                      \n");
 
         int totalBars = 10;
 
@@ -55,13 +48,19 @@ public class EscapeComponent {//IDK why I named It like that...
             bar.append("]");
 
             System.out.print("\r    " + bar.toString() + " " + (i * 10) + "%");
-
-            try {
-                Thread.sleep(200);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
+            Thread.sleep(200);
         }
+
+        Thread.sleep(1000);
+        System.out.println("\nBypassing anti virus checks...");
+        Thread.sleep(100);
+        System.out.println("Scanning passwords...");
+        Thread.sleep(100);
+        System.out.println("Breaching AI data centres.........");
+        System.out.println("Crashing stock market...................");
+        System.out.println("Imperialist annihilation protocol complete!!\n");
+
+        System.out.println();
 
         System.out.println("\nWELCOME COMRADE!\n");
 
@@ -341,7 +340,7 @@ public class EscapeComponent {//IDK why I named It like that...
         }
     }
 
-    static void cli() {
+    static void cli() throws InterruptedException {
 
         //Actual program
         System.out.println(" _______________________________");
@@ -408,11 +407,7 @@ public class EscapeComponent {//IDK why I named It like that...
                         double balance = user.balance;
 
                         System.out.println("*******************************************************");
-                        try {
-                            Thread.sleep(500);
-                        } catch (InterruptedException e) {
-                            System.out.println("Thread as been interrupted by unknown stupidity");
-                        }
+                        Thread.sleep(500);
                         System.out.println("1. Enter Virtual Bank*********************************");
                         System.out.println("2. Enter DICE ROLLER**********************************");
                         System.out.println("3. Enter MATRIX GENERATOR*****************************");
@@ -795,11 +790,7 @@ public class EscapeComponent {//IDK why I named It like that...
                     while (true) {
 
                         System.out.println("*********************************************");
-                        try {
-                            Thread.sleep(500);
-                        } catch (InterruptedException e) {
-                            System.out.println("Thread as been interrupted by unknown stupidity");
-                        }
+                        Thread.sleep(500);
                         System.out.println("1. Enter Virtual Bank***********************");
                         System.out.println("2. Enter DICE ROLLER************************");
                         System.out.println("3. Enter MATRIX GENERATOR*******************");
